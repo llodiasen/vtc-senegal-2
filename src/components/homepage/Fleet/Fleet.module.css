@@ -1,0 +1,180 @@
+/* Fleet Section Styles */
+
+.section {
+  padding: 60px 20px;
+  background: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #2c3e50;
+  margin: 0 0 12px 0;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin: 0 0 50px 0;
+}
+
+.vehiclesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+/* VehicleCard Styles */
+
+.vehicleCard {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.vehicleCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.vehicleImage {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+}
+
+.carSvg {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
+.vehicleContent {
+  padding: 24px;
+}
+
+.vehicleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.vehicleName {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0;
+}
+
+.vehicleType {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.vehicleDescription {
+  color: #666;
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.vehicleSpecs {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+  padding: 16px 0;
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.spec {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.specIcon {
+  font-size: 1.2rem;
+}
+
+.specValue {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.vehicleFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.priceIndicator {
+  color: #667eea;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.selectButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.selectButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.selectButton:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .section {
+    padding: 80px 40px;
+  }
+  
+  .vehiclesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 100px 40px;
+  }
+  
+  .vehiclesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}

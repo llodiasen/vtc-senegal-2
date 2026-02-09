@@ -1,0 +1,221 @@
+/* ==============================================
+   HEADER ANIMATIONS & CUSTOM STYLES
+   ============================================== */
+
+/* Animation pour le menu mobile */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Menu mobile slide-in animation */
+.mobile-menu-enter {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.mobile-menu-overlay {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Dropdown animations */
+.dropdown-menu {
+  animation: fadeIn 0.15s ease-out;
+  transform-origin: top;
+}
+
+/* Smooth underline effect for nav links */
+.nav-link-underline {
+  position: relative;
+}
+
+.nav-link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease-out;
+}
+
+.nav-link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Header shadow on scroll */
+.header-scrolled {
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+/* Custom scrollbar for mobile menu */
+.mobile-menu-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mobile-menu-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.mobile-menu-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.mobile-menu-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Focus styles for accessibility */
+.focus-ring:focus {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+  border-radius: 0.375rem;
+}
+
+/* Prevent body scroll when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Safe area handling for iOS */
+@supports (padding: max(0px)) {
+  .header-safe-area {
+    padding-top: max(env(safe-area-inset-top), 0px);
+  }
+}
+
+/* Language switcher flag animation */
+.lang-flag {
+  transition: transform 0.2s ease-out;
+}
+
+.lang-flag:hover {
+  transform: scale(1.1);
+}
+
+/* Button hover states */
+.btn-hover-lift {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.btn-hover-lift:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Smooth color transitions */
+.color-transition {
+  transition: color 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+/* Gradient text for logo (optional) */
+.gradient-text {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Backdrop blur for mobile menu */
+@supports (backdrop-filter: blur(10px)) {
+  .mobile-menu-blur {
+    backdrop-filter: blur(10px);
+    background-color: rgba(17, 24, 39, 0.95);
+  }
+}
+
+/* Pulse animation for notifications (optional) */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.notification-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Hamburger menu animation */
+.hamburger-line {
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.hamburger-open .hamburger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-open .hamburger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Responsive utilities */
+@media (max-width: 639px) {
+  .mobile-only {
+    display: block;
+  }
+  
+  .desktop-only {
+    display: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .mobile-only {
+    display: none;
+  }
+  
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* Print styles */
+@media print {
+  header {
+    position: static;
+    box-shadow: none;
+  }
+  
+  .mobile-menu-toggle,
+  .dropdown-menu {
+    display: none;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

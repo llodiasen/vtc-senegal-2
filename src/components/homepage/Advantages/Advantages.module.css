@@ -1,0 +1,102 @@
+/* Advantages Section Styles */
+
+.section {
+  padding: 60px 20px;
+  background: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #2c3e50;
+  margin: 0 0 12px 0;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin: 0 0 50px 0;
+}
+
+.advantagesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.advantageCard {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.iconCircle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.icon {
+  font-size: 2.5rem;
+  filter: grayscale(100%) brightness(200%);
+}
+
+.advantageTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 12px 0;
+}
+
+.advantageDescription {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1rem;
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .section {
+    padding: 80px 40px;
+  }
+  
+  .advantagesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px 40px;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 100px 40px;
+  }
+  
+  .advantagesGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+  
+  .advantageCard {
+    padding: 20px 10px;
+  }
+}

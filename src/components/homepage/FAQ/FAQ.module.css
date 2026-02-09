@@ -1,0 +1,158 @@
+/* FAQ Section Styles */
+
+.section {
+  padding: 60px 20px;
+  background: white;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #2c3e50;
+  margin: 0 0 12px 0;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  margin: 0 0 50px 0;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 50px;
+}
+
+/* FAQItem Styles */
+
+.faqItem {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+.faqQuestion {
+  width: 100%;
+  padding: 20px 24px;
+  background: #f8f9fa;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.faqQuestion:hover {
+  background: #e9ecef;
+}
+
+.questionText {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #2c3e50;
+  padding-right: 20px;
+}
+
+.chevron {
+  color: #667eea;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faqAnswerOpen {
+  max-height: 500px;
+  padding: 20px 24px;
+  background: white;
+}
+
+.answerText {
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+/* Contact CTA */
+
+.contactCta {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+}
+
+.ctaText {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin: 0 0 20px 0;
+  font-weight: 500;
+}
+
+.ctaButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 32px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .section {
+    padding: 80px 40px;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .questionText {
+    font-size: 1.1rem;
+  }
+  
+  .answerText {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 100px 40px;
+  }
+}
