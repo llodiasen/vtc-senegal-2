@@ -8,5 +8,6 @@ export { default as HomeHeader } from './HomeHeader';
 export { BottomNav } from './BottomNav';
 export { PageContainer } from './PageContainer';
 export { SkipLink } from './SkipLink';
+export { Footer } from './Footer';
 
 export type { TabType } from './BottomNav';

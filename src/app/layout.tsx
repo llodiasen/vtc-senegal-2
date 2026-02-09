@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { OfflineBanner } from '@/components/ui';
-import { SkipLink } from '@/components/layout';
+import { SkipLink, Footer } from '@/components/layout';
 import { ServiceWorkerRegistration } from '@/components/pwa/ServiceWorkerRegistration';
 import { DevCacheCleaner } from '@/components/pwa/DevCacheCleaner';
 
@@ -82,6 +82,7 @@ export default function RootLayout({
         <main id="main-content" tabIndex={-1}>
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );

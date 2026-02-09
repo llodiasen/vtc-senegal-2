@@ -1,12 +1,12 @@
 import React from 'react';
 import HomeHeader from '@/components/layout/HomeHeader';
-import { BookingSection, FleetSection, ValuePropositionSection } from '@/components/home';
+import { BookingSection, FleetSection, ValuePropositionSection, SolutionsSection, AboutSection, ToursSection, EnterpriseSolutionsSection, WhyChooseUsSection, ContactSection } from '@/components/home';
 
 export default function HomePage() {
   return (
     <>
       <HomeHeader />
-      <main className="min-h-screen">
+      <div className="min-h-screen">
       {/* First section with background image - optimisée pour les performances */}
       <section
         className="relative min-h-[80vh] bg-cover bg-center bg-no-repeat"
@@ -37,7 +37,25 @@ export default function HomePage() {
 
       {/* Section Proposition de valeur + Cartes atouts */}
       <ValuePropositionSection />
-    </main>
+
+      {/* Section Solutions adaptées à tous vos besoins */}
+      <SolutionsSection />
+
+      {/* Section À propos - Partenaire mobilité */}
+      <AboutSection />
+
+      {/* Section Tourisme & Circuits */}
+      <ToursSection />
+
+      {/* Solutions transport pour entreprises */}
+      <EnterpriseSolutionsSection />
+
+      {/* Pourquoi nous choisir ? */}
+      <WhyChooseUsSection />
+
+      {/* Section Contactez-nous */}
+      <ContactSection />
+    </div>
     </>
   );
 }

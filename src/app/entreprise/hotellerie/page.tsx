@@ -149,7 +149,7 @@ export default function HotelleriePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="tel:+221123456789"
+              href="tel:+221778223493"
               className="inline-flex items-center gap-2 px-8 py-4 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
             >
               <Phone className="w-5 h-5" />

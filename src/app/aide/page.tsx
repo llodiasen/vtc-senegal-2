@@ -101,7 +101,7 @@ export default function AidePage() {
                 Disponible 24/7
               </p>
               <a
-                href="tel:+221123456789"
+                href="tel:+221778223493"
                 className="text-primary-600 font-medium hover:text-primary-700"
               >
                 +221 12 345 67 89
