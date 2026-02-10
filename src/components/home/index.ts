@@ -8,6 +8,7 @@ export { FeatureList } from './FeatureList';
 export { FleetSection } from './FleetSection';
 export { HeroIllustration } from './HeroIllustration';
 export { default as ValuePropositionSection } from './ValuePropositionSection';
+export { FeatureCardsSection } from './FeatureCardsSection';
 export { SolutionsSection } from './SolutionsSection';
 export { AboutSection } from './AboutSection';
 export { ToursSection } from './ToursSection';

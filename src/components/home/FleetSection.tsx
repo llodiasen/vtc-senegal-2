@@ -1,181 +1,340 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { ChevronRight, Minus, Star, Check, ArrowRight } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import Image from 'next/image';
+import { Users, Luggage, Minus, ArrowRight } from 'lucide-react';
+import { VehicleModal } from './VehicleModal';
 
-const CATEGORIES = [
-  { id: 'berlines', label: 'Berlines', count: 4 },
-  { id: 'suv', label: 'SUV', count: 6 },
-  { id: '4x4', label: '4x4', count: 2 },
-  { id: 'vans', label: 'Vans', count: 4 },
-  { id: 'bus', label: 'Bus', count: 2 },
-] as const;
+// Types de véhicules
+type VehicleType = 'all' | 'berline' | 'suv' | '4x4' | 'van';
 
-const VEHICLES = [
+interface Driver {
+  name: string;
+  photo?: string;
+  rating: number;
+  tripsCount: number;
+  experience: number;
+  languages: string[];
+  certifications: string[];
+  specialties: string[];
+  status: 'available' | 'on-trip';
+}
+
+interface Vehicle {
+  id: number;
+  label: string;
+  type: VehicleType;
+  image: string;
+  price: number;
+  passengers: number;
+  luggage: number;
+  description: string;
+  features: string[];
+  fuelType: string;
+  year: number;
+  driver: Driver;
+}
+
+const FLEET_CATEGORIES: Vehicle[] = [
   {
     id: 1,
-    name: 'BMW Série 5',
-    category: 'berline',
-    categoryLabel: 'berline',
-    rating: 4.8,
-    description: 'Véhicule premium avec équipements haut de gamme',
-    features: ['Climatisation', 'GPS', 'Bluetooth'],
-    featuresMore: 8,
-    priceHour: 25000,
-    priceDay: 150000,
-    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=250&fit=crop',
+    label: 'BMW Série 5',
+    type: 'berline',
+    image: '/cars/1.webp',
+    price: 25,
+    passengers: 4,
+    luggage: 3,
+    description: 'Véhicules haut de gamme (Mercedes, Audi, BMW...)',
+    features: ['Climatisation', 'GPS', 'Bluetooth', 'Sièges en cuir', 'Caméra de recul', 'Toit panoramique', 'Système audio premium', 'Régulateur de vitesse', 'Aide au stationnement', 'Éclairage LED', 'Chargeur USB', 'Sièges chauffants'],
+    fuelType: 'Essence',
+    year: 2022,
+    driver: {
+      name: 'Mamadou Diallo',
+      rating: 4.8,
+      tripsCount: 450,
+      experience: 5,
+      languages: ['FR', 'EN', 'Wolof'],
+      certifications: ['Certifié VTC', 'Sécurité routière'],
+      specialties: ['Aéroport', 'Événements', 'VIP'],
+      status: 'available',
+    },
   },
   {
     id: 2,
-    name: 'Nissan Altima',
-    category: 'berline',
-    categoryLabel: 'berline',
-    rating: 4.9,
-    description: 'Véhicule premium avec équipements haut de gamme',
-    features: ['Caméra de recul', 'Sièges en cuir', 'Bluetooth'],
-    featuresMore: 6,
-    priceHour: 10000,
-    priceDay: 45000,
-    image: 'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=400&h=250&fit=crop',
+    label: 'Tesla Model S',
+    type: 'berline',
+    image: '/cars/7ac99ba95b.jpg',
+    price: 15,
+    passengers: 4,
+    luggage: 3,
+    description: '70% de véhicules hybrides bas carbone',
+    features: ['100% Électrique', 'Autopilot', 'Écran tactile', 'Wi-Fi', 'Chargement sans fil', 'Climatisation', 'GPS', 'Sièges en cuir', 'Caméra de recul', 'Système audio premium', 'Régulateur de vitesse', 'Chargeur USB'],
+    fuelType: 'Électrique',
+    year: 2023,
+    driver: {
+      name: 'Amadou Ba',
+      rating: 4.9,
+      tripsCount: 320,
+      experience: 4,
+      languages: ['FR', 'EN', 'Wolof'],
+      certifications: ['Certifié VTC', 'Éco-conduite'],
+      specialties: ['Éco-responsable', 'Longue distance'],
+      status: 'available',
+    },
   },
   {
     id: 3,
-    name: 'Hyundai KONA',
-    category: 'suv',
-    categoryLabel: 'SUV',
-    rating: 4.8,
-    description: 'Véhicule confortable et bien équipé',
-    features: ['Climatisation', 'GPS', 'Toit ouvrant'],
-    featuresMore: 5,
-    priceHour: 10000,
-    priceDay: 30000,
-    image: 'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=400&h=250&fit=crop',
+    label: 'Tesla Model X',
+    type: 'suv',
+    image: '/cars/cef2b6af2c.jpg',
+    price: 20,
+    passengers: 7,
+    luggage: 4,
+    description: 'Véhicules 100% électrique (Tesla, BYD...)',
+    features: ['100% Électrique', '7 places', 'Autopilot', 'Portes papillon', 'Wi-Fi', 'Climatisation', 'GPS', 'Écran tactile', 'Chargement sans fil', 'Système audio premium', 'Caméra de recul', 'Sièges en cuir'],
+    fuelType: 'Électrique',
+    year: 2023,
+    driver: {
+      name: 'Ibrahima Sarr',
+      rating: 4.7,
+      tripsCount: 280,
+      experience: 6,
+      languages: ['FR', 'EN', 'Wolof', 'AR'],
+      certifications: ['Certifié VTC', 'Premiers secours'],
+      specialties: ['Familles', 'Groupes', 'Longue distance'],
+      status: 'available',
+    },
+  },
+  {
+    id: 4,
+    label: 'Range Rover',
+    type: '4x4',
+    image: '/cars/93d4fcebfa.jpg',
+    price: 35,
+    passengers: 5,
+    luggage: 4,
+    description: 'Véhicule tout-terrain robuste et fiable',
+    features: ['4x4 permanent', 'Sièges en cuir', 'Système audio premium', 'GPS', 'Climatisation', 'Bluetooth', 'Caméra de recul', 'Régulateur de vitesse', 'Aide au stationnement', 'Éclairage LED', 'Chargeur USB', 'Toit panoramique'],
+    fuelType: 'Diesel',
+    year: 2021,
+    driver: {
+      name: 'Ousmane Ndiaye',
+      rating: 4.9,
+      tripsCount: 520,
+      experience: 8,
+      languages: ['FR', 'EN', 'Wolof'],
+      certifications: ['Certifié VTC', 'Conduite tout-terrain'],
+      specialties: ['Tout-terrain', 'Zones rurales', 'Aventure'],
+      status: 'available',
+    },
+  },
+  {
+    id: 5,
+    label: 'Mercedes V-Class',
+    type: 'van',
+    image: '/cars/62e070ed9a.jpg',
+    price: 40,
+    passengers: 8,
+    luggage: 6,
+    description: 'Idéal pour les voyages en famille ou entre amis',
+    features: ['8 places', 'Grand espace', 'Climatisation', 'GPS', 'Sièges confortables', 'Grand coffre', 'Bluetooth', 'Système audio premium', 'Caméra de recul', 'Régulateur de vitesse', 'Chargeur USB', 'Éclairage LED'],
+    fuelType: 'Diesel',
+    year: 2022,
+    driver: {
+      name: 'Cheikh Fall',
+      rating: 4.8,
+      tripsCount: 380,
+      experience: 7,
+      languages: ['FR', 'EN', 'Wolof'],
+      certifications: ['Certifié VTC', 'Transport de groupe'],
+      specialties: ['Groupes', 'Événements', 'Familles'],
+      status: 'available',
+    },
+  },
+  {
+    id: 6,
+    label: 'Van Access',
+    type: 'van',
+    image: '/cars/a4b3ecb258.jpg',
+    price: 40,
+    passengers: 6,
+    luggage: 4,
+    description: 'Véhicule adapté aux personnes à mobilité réduite, avec rampe ou élévateur',
+    features: ['6 places', 'Rampe d\'accès', 'Élévateur', 'Sièges adaptés', 'Climatisation', 'GPS', 'Bluetooth', 'Système audio premium', 'Caméra de recul', 'Régulateur de vitesse', 'Chargeur USB', 'Aide au stationnement'],
+    fuelType: 'Diesel',
+    year: 2023,
+    driver: {
+      name: 'Fatou Diop',
+      rating: 5.0,
+      tripsCount: 290,
+      experience: 5,
+      languages: ['FR', 'EN', 'Wolof'],
+      certifications: ['Certifié VTC', 'Accessibilité PMR'],
+      specialties: ['Accessibilité', 'PMR', 'Médical'],
+      status: 'available',
+    },
   },
 ];
 
 export function FleetSection() {
-  const [activeCategory, setActiveCategory] = useState<string>('berlines');
+  const [selectedType, setSelectedType] = useState<VehicleType>('all');
+  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Compter les véhicules par type
+  const vehicleCounts = useMemo(() => {
+    return {
+      all: FLEET_CATEGORIES.length,
+      berline: FLEET_CATEGORIES.filter(v => v.type === 'berline').length,
+      suv: FLEET_CATEGORIES.filter(v => v.type === 'suv').length,
+      '4x4': FLEET_CATEGORIES.filter(v => v.type === '4x4').length,
+      van: FLEET_CATEGORIES.filter(v => v.type === 'van').length,
+    };
+  }, []);
+
+  // Filtrer les véhicules
+  const filteredVehicles = useMemo(() => {
+    if (selectedType === 'all') {
+      return FLEET_CATEGORIES;
+    }
+    return FLEET_CATEGORIES.filter((vehicle) => vehicle.type === selectedType);
+  }, [selectedType]);
 
   return (
-    <section className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <section className="bg-gray-50/30 py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-10 sm:mb-12">
-          <Link
-            href="#flotte"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary-50 text-primary-600 text-sm font-medium border border-primary-100 hover:bg-primary-100 transition-colors mb-6"
-          >
-            Notre Flotte
-            <ChevronRight className="w-4 h-4" />
-          </Link>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Des Véhicules{' '}
-            <span className="text-primary-600">Premium</span>
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Véhicules{' '}
+            <span className="text-primary-600">disponibles</span>
           </h2>
-          <p className="text-gray-500 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
             Découvrez notre gamme complète de véhicules haut de gamme, entretenus avec soin et conduits par des chauffeurs professionnels.
           </p>
         </div>
 
-        {/* Filter bar */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 sm:mb-12">
-          {CATEGORIES.map((cat) => {
-            const isActive = activeCategory === cat.id;
-            return (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => setActiveCategory(cat.id)}
-                className={`
-                  inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full text-sm font-medium transition-colors
-                  ${isActive
-                    ? 'bg-primary-600 text-white shadow-md'
-                    : 'bg-gray-50 text-gray-700 border border-gray-200 hover:bg-gray-100'
-                  }
-                `}
+        {/* Filtres - Design en pilules avec compteurs */}
+        <div className="mb-10">
+          <div className="flex flex-wrap justify-center gap-3">
+            {[
+              { value: 'all', label: 'Tous' },
+              { value: 'berline', label: 'Berlines' },
+              { value: 'suv', label: 'SUV' },
+              { value: '4x4', label: '4x4' },
+              { value: 'van', label: 'Vans' },
+            ].map((type) => {
+              const isActive = selectedType === type.value;
+              return (
+                <button
+                  key={type.value}
+                  onClick={() => setSelectedType(type.value as VehicleType)}
+                  className={`
+                    inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300
+                    ${isActive
+                      ? 'bg-primary-600 text-white shadow-md hover:bg-primary-700'
+                      : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+                    }
+                  `}
+                >
+                  <span>{type.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Fleet Grid */}
+        {filteredVehicles.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {filteredVehicles.map((category) => (
+              <div
+                key={category.id}
+                className="group bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300"
               >
-                <Minus className="w-3.5 h-3.5 flex-shrink-0" />
-                {cat.label} {cat.count}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Vehicle cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {VEHICLES.map((vehicle) => (
-            <article
-              key={vehicle.id}
-              className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
-            >
-              {/* Image */}
-              <div className="relative aspect-[4/3] bg-gray-100">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={vehicle.image}
-                  alt={vehicle.name}
-                  className="w-full h-full object-cover rounded-t-xl"
-                />
-                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-primary-600 text-white text-xs font-medium capitalize">
-                  {vehicle.categoryLabel}
-                </span>
-                <span className="absolute top-3 right-3 flex items-center gap-1 px-2 py-1 rounded-md bg-white/95 text-gray-800 text-sm font-medium shadow-sm">
-                  <Star className="w-4 h-4 text-amber-400 fill-amber-400" />
-                  {vehicle.rating}
-                </span>
-              </div>
-
-              {/* Content */}
-              <div className="p-5">
-                <h3 className="text-lg font-bold text-gray-900 mb-1">
-                  {vehicle.name}
-                </h3>
-                <p className="text-gray-500 text-sm mb-4">
-                  {vehicle.description}
-                </p>
-
-                {/* Features */}
-                <ul className="space-y-2 mb-4">
-                  {vehicle.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-gray-700">
-                      <Check className="w-4 h-4 text-primary-600 flex-shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                  {vehicle.featuresMore > 0 && (
-                    <li className="flex items-center gap-2 text-sm text-gray-600">
-                      <Check className="w-4 h-4 text-primary-600 flex-shrink-0" />
-                      +{vehicle.featuresMore}
-                    </li>
-                  )}
-                </ul>
-
-                {/* Pricing */}
-                <div className="text-sm text-gray-700 space-y-0.5 mb-4">
-                  <p>
-                    <span className="font-semibold">{vehicle.priceHour.toLocaleString('fr-FR')} FCFA</span> /heure
-                  </p>
-                  <p>
-                    <span className="font-semibold">{vehicle.priceDay.toLocaleString('fr-FR')} FCFA</span> /jour
-                  </p>
+                {/* Image with white background */}
+                <div className="relative aspect-[4/3] bg-transparent flex items-center justify-center p-8">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={category.image}
+                      alt={category.label}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
                 </div>
 
-                {/* CTA */}
-                <div className="flex justify-end">
-                  <Link
-                    href="/booking/new"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary-600 text-white text-sm font-semibold hover:bg-primary-700 transition-colors"
+                {/* Content - White section with hover effect */}
+                <div className="bg-transparent group-hover:bg-gray-50/30 p-6 transition-colors duration-300">
+                  {/* Title with capacity badges */}
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-800 flex-1">
+                      {category.label}
+                    </h3>
+                    <div className="flex items-center gap-2 ml-4 flex-shrink-0">
+                      {/* Passengers badge */}
+                      <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-secondary-100 text-primary-600 text-xs">
+                        <Users className="w-3 h-3 text-primary-600" />
+                        <span className="font-normal text-primary-600">{category.passengers}</span>
+                      </div>
+                      {/* Luggage badge */}
+                      <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-secondary-100 text-primary-600 text-xs">
+                        <Luggage className="w-3 h-3 text-primary-600" />
+                        <span className="font-normal text-primary-600">{category.luggage}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Price */}
+                  <div className="mb-2">
+                    <p className="text-sm font-normal text-gray-700">
+                      À partir de {category.price}€
+                    </p>
+                  </div>
+
+                  {/* Description - becomes yellow on hover */}
+                  <p className="text-sm text-gray-400 leading-relaxed group-hover:bg-secondary-100 group-hover:text-primary-600 group-hover:px-3 group-hover:py-2 rounded-md transition-all duration-300 inline-block mb-4">
+                    {category.description}
+                  </p>
+
+                  {/* En savoir plus button - minimaliste */}
+                  <button
+                    onClick={() => {
+                      setSelectedVehicle(category);
+                      setIsModalOpen(true);
+                    }}
+                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-secondary-600 hover:text-secondary-700 hover:bg-secondary-50 rounded-lg transition-all duration-300 group/btn"
                   >
-                    Réserver
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
+                    <span>En savoir plus</span>
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  </button>
                 </div>
               </div>
-            </article>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-gray-500 text-lg">Aucun véhicule ne correspond à vos critères</p>
+            <button
+              onClick={() => setSelectedType('all')}
+              className="mt-4 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
+            >
+              Réinitialiser les filtres
+            </button>
+          </div>
+        )}
       </div>
+
+      {/* Modal */}
+      <VehicleModal
+        vehicle={selectedVehicle}
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedVehicle(null);
+        }}
+      />
     </section>
   );
 }

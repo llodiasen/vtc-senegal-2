@@ -101,24 +101,15 @@ const TOURS = [
 
 export function ToursSection() {
   return (
-    <section id="tours" className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <section id="tours" className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
-        {/* Badge */}
-        <div className="text-center mb-8">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-50 text-gray-700 text-sm font-medium border border-primary-100">
-            <span className="w-4 h-4 rounded-full bg-primary-600 flex items-center justify-center">
-              <span className="text-white text-xs">✓</span>
-            </span>
-            Tourisme & Circuits
-          </span>
-        </div>
-
         {/* Title */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Découvrez les merveilles du <span className="text-primary-600">Sénégal</span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Découvrez les merveilles du{' '}
+            <span className="text-primary-600">Sénégal</span>
           </h2>
-          <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
             Explorez le Sénégal avec nos circuits touristiques soigneusement conçus.
             De Dakar à la Casamance, vivez des expériences authentiques et inoubliables.
           </p>
@@ -143,16 +134,9 @@ function TourCard({
   const [showHighlights, setShowHighlights] = useState(true);
 
   return (
-    <div className="relative bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow flex flex-col">
-      {/* Populaire tag */}
-      {tour.popular && (
-        <span className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-primary-600 text-white text-xs font-semibold">
-          Populaire
-        </span>
-      )}
-
-      {/* Image or icon for custom card */}
-      <div className="relative w-full h-48 sm:h-52 bg-gray-200">
+    <div className="group bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
+      {/* Image section */}
+      <div className="relative aspect-[4/3] bg-transparent flex items-center justify-center overflow-hidden">
         {tour.image ? (
           <Image
             src={tour.image}
@@ -166,11 +150,27 @@ function TourCard({
             <Sparkles className="w-16 h-16 text-primary-600" aria-hidden />
           </div>
         )}
+        {/* Populaire tag */}
+        {tour.popular && (
+          <span className="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-primary-600 text-white text-xs font-semibold">
+            Populaire
+          </span>
+        )}
       </div>
 
-      <div className="p-6 sm:p-8 flex flex-col flex-1">
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{tour.title}</h3>
-        <p className="text-gray-600 text-sm mb-4">{tour.description}</p>
+      {/* Content - White section with hover effect */}
+      <div className="bg-transparent group-hover:bg-gray-50/30 p-6 transition-colors duration-300">
+        {/* Title */}
+        <div className="mb-3">
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-800">
+            {tour.title}
+          </h3>
+        </div>
+
+        {/* Description - becomes yellow on hover */}
+        <p className="text-sm text-gray-400 leading-relaxed group-hover:bg-secondary-100 group-hover:text-primary-600 group-hover:px-3 group-hover:py-2 rounded-md transition-all duration-300 inline-block mb-4">
+          {tour.description}
+        </p>
 
         {/* Details row */}
         <div className="flex flex-wrap gap-2 mb-4">
@@ -189,11 +189,11 @@ function TourCard({
         </div>
 
         {/* Points forts */}
-        <div className="mb-6 flex-1">
+        <div className="mb-4">
           <button
             type="button"
             onClick={() => setShowHighlights(!showHighlights)}
-            className="flex items-center justify-between w-full text-left font-semibold text-gray-900 mb-2"
+            className="flex items-center justify-between w-full text-left font-semibold text-gray-900 mb-2 text-sm"
           >
             Points forts
             <span className="text-gray-500 text-sm font-normal">
@@ -213,8 +213,8 @@ function TourCard({
         </div>
 
         {/* Price & CTA */}
-        <div className="mt-auto pt-4 border-t border-gray-100">
-          <p className={`text-2xl font-bold text-primary-600 ${tour.priceNote ? 'mb-1' : 'mb-4'}`}>
+        <div className="pt-4 border-t border-gray-100">
+          <p className={`text-lg font-bold text-primary-600 ${tour.priceNote ? 'mb-1' : 'mb-4'}`}>
             {tour.price}
           </p>
           {tour.priceNote && (
@@ -222,10 +222,10 @@ function TourCard({
           )}
           <Link
             href={tour.href}
-            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 rounded-lg bg-primary-600 text-white font-semibold hover:bg-primary-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-secondary-600 hover:text-secondary-700 hover:bg-secondary-50 rounded-lg transition-all duration-300 group/btn"
           >
-            {tour.cta}
-            <span aria-hidden>→</span>
+            <span>{tour.cta}</span>
+            <span className="group-hover/btn:translate-x-1 transition-transform duration-300" aria-hidden>→</span>
           </Link>
         </div>
       </div>

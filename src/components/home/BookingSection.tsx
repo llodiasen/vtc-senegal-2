@@ -55,10 +55,10 @@ export const BookingSection: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 w-full max-w-lg">
+    <div className="flex flex-col gap-6 w-full max-w-xl">
       {/* Main heading - Style minimaliste */}
       <div className="space-y-3 w-full">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight max-w-full">
           <span className="block text-white">Réservez facilement</span>
           <span className="block">
             <span className="text-white">vos </span>
@@ -100,7 +100,7 @@ export const BookingSection: React.FC = () => {
           <span className="block text-white">partout au Sénégal</span>
         </h1>
 
-        <p className="text-sm sm:text-base text-white/90 leading-snug font-normal">
+        <p className="text-sm sm:text-base text-white/90 leading-snug font-normal max-w-full">
           <span className="block">Gare, aéroport, rendez-vous client ou week-end en famille ?</span>
           <span className="block">Réservez 1 VTC à l'avance : prix fixes, chauffeurs ponctuels</span>
           <span className="block">et trajets garantis partout au Sénégal.</span>

@@ -83,11 +83,11 @@ const HomeHeader = () => {
       <header className="fixed top-0 left-0 right-0 z-[100] bg-white border-b border-gray-200 shadow-sm pt-[env(safe-area-inset-top)]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop & Tablet Header */}
-          <div className="py-4">
+          <div className="py-2">
             <div className="flex items-center justify-between">
               <Link
                 href="/"
-                className="inline-flex items-center h-20 hover:opacity-80 transition-opacity rounded px-1"
+                className="inline-flex items-center h-12 hover:opacity-80 transition-opacity rounded px-1"
                 aria-label="Aller à la page d'accueil - SCOD VTC"
               >
                 {!logoError ? (
@@ -96,8 +96,8 @@ const HomeHeader = () => {
                     alt="SCOD VTC"
                     width={260}
                     height={80}
-                    className="h-20 w-auto object-contain"
-                    style={{ maxHeight: 80 }}
+                    className="h-12 w-auto object-contain"
+                    style={{ maxHeight: 48 }}
                     unoptimized
                     onError={() => setLogoError(true)}
                   />
@@ -105,8 +105,8 @@ const HomeHeader = () => {
                   <img
                     src="/logo.svg"
                     alt="SCOD VTC"
-                    className="h-20 w-auto object-contain"
-                    style={{ maxHeight: 80 }}
+                    className="h-12 w-auto object-contain"
+                    style={{ maxHeight: 48 }}
                     width={260}
                     height={80}
                   />
@@ -127,7 +127,7 @@ const HomeHeader = () => {
                             e.stopPropagation();
                             toggleDropdown(item.label);
                           }}
-                          className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
+                          className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
                           aria-expanded={openDropdown === item.label}
                           aria-haspopup="true"
                         >
@@ -166,7 +166,7 @@ const HomeHeader = () => {
                     ) : (
                       <Link
                         href={item.href!}
-                        className="block px-4 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
+                        className="block px-3 py-1.5 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
                       >
                         {item.label}
                       </Link>
@@ -184,7 +184,7 @@ const HomeHeader = () => {
                       e.stopPropagation();
                       setIsLangDropdownOpen(!isLangDropdownOpen);
                     }}
-                    className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
+                    className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
                     aria-label="Changer de langue"
                     aria-expanded={isLangDropdownOpen}
                     aria-haspopup="true"
@@ -227,7 +227,7 @@ const HomeHeader = () => {
                 {/* Aide */}
                 <Link
                   href="/aide"
-                  className="px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
+                  className="px-3 py-1.5 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
                 >
                   Aide
                 </Link>
@@ -236,7 +236,7 @@ const HomeHeader = () => {
                 {isAuthenticated && user ? (
                   <Link
                     href="/profile"
-                    className="px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700 transition-colors"
+                    className="px-4 py-1.5 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700 transition-colors"
                   >
                     Mon compte
                   </Link>
@@ -244,13 +244,13 @@ const HomeHeader = () => {
                   <>
                     <Link
                       href="/auth/login"
-                      className="px-3 py-2 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
+                      className="px-3 py-1.5 text-sm font-medium text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
                     >
                       Connexion
                     </Link>
                     <Link
                       href="/auth/register"
-                      className="px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700 transition-colors"
+                      className="px-4 py-1.5 text-sm font-medium text-white bg-primary-600 rounded-md hover:bg-primary-700 transition-colors"
                     >
                       S&apos;inscrire
                     </Link>
@@ -261,7 +261,7 @@ const HomeHeader = () => {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="xl:hidden flex items-center justify-center w-11 h-11 text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
+                className="xl:hidden flex items-center justify-center w-9 h-9 text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
                 aria-label={isMobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
                 aria-expanded={isMobileMenuOpen}
               >

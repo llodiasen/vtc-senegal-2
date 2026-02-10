@@ -16,6 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://vtc-senegal.com'),
   title: 'scod vtc - Réservation',
   description: 'Application de réservation VTC au Sénégal. Réservez votre course rapidement et facilement.',
   manifest: '/manifest.json',
@@ -24,7 +25,6 @@ export const metadata: Metadata = {
     statusBarStyle: 'default',
     title: 'scod vtc',
   },
-  themeColor: '#002060',
   icons: {
     icon: [
       { url: '/favicon.png', type: 'image/png', sizes: '32x32' },

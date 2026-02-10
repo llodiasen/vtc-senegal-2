@@ -1,6 +1,6 @@
 import React from 'react';
 import HomeHeader from '@/components/layout/HomeHeader';
-import { BookingSection, FleetSection, ValuePropositionSection, SolutionsSection, AboutSection, ToursSection, EnterpriseSolutionsSection, WhyChooseUsSection, ContactSection } from '@/components/home';
+import { BookingSection, FleetSection, ValuePropositionSection, FeatureCardsSection, SolutionsSection, EnterpriseSolutionsSection, WhyChooseUsSection, ContactSection } from '@/components/home';
 
 export default function HomePage() {
   return (
@@ -21,7 +21,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
         
         {/* Content avec z-index pour être au-dessus de l'overlay */}
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 pt-20">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 pt-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
             <div className="lg:col-span-7 xl:col-span-8">
               <BookingSection />
@@ -30,22 +30,19 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Section 2 - Trois cartes de fonctionnalités */}
+      <FeatureCardsSection />
+
       {/* Section Notre Flotte - Véhicules Premium */}
-      <section id="flotte">
+      <section id="flotte" className="scroll-mt-20">
         <FleetSection />
       </section>
 
-      {/* Section Proposition de valeur + Cartes atouts */}
+      {/* Section Proposition de valeur */}
       <ValuePropositionSection />
 
       {/* Section Solutions adaptées à tous vos besoins */}
       <SolutionsSection />
-
-      {/* Section À propos - Partenaire mobilité */}
-      <AboutSection />
-
-      {/* Section Tourisme & Circuits */}
-      <ToursSection />
 
       {/* Solutions transport pour entreprises */}
       <EnterpriseSolutionsSection />
