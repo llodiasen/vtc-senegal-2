@@ -201,15 +201,15 @@ export function FleetSection() {
   }, [selectedType]);
 
   return (
-    <section className="bg-gray-50/30 py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+    <section className="bg-[#192230] py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4">
             Véhicules{' '}
-            <span className="text-primary-600">disponibles</span>
+            <span className="text-primary-400">disponibles</span>
           </h2>
-          <p className="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
             Découvrez notre gamme complète de véhicules haut de gamme, entretenus avec soin et conduits par des chauffeurs professionnels.
           </p>
         </div>
@@ -233,7 +233,7 @@ export function FleetSection() {
                     inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300
                     ${isActive
                       ? 'bg-primary-600 text-white shadow-md hover:bg-primary-700'
-                      : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:border-gray-300'
+                      : 'bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm'
                     }
                   `}
                 >
@@ -250,10 +250,10 @@ export function FleetSection() {
             {filteredVehicles.map((category) => (
               <div
                 key={category.id}
-                className="group bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300"
+                className="group bg-[#1e2a3a] rounded-xl overflow-hidden hover:shadow-lg hover:bg-[#253141] transition-all duration-300 border border-white/10"
               >
-                {/* Image with white background */}
-                <div className="relative aspect-[4/3] bg-transparent flex items-center justify-center p-8">
+                {/* Image with dark background */}
+                <div className="relative aspect-[4/3] bg-[#192230] flex items-center justify-center p-8">
                   <div className="relative w-full h-full">
                     <Image
                       src={category.image}
@@ -265,36 +265,36 @@ export function FleetSection() {
                   </div>
                 </div>
 
-                {/* Content - White section with hover effect */}
-                <div className="bg-transparent group-hover:bg-gray-50/30 p-6 transition-colors duration-300">
+                {/* Content - Dark section with hover effect */}
+                <div className="bg-transparent group-hover:bg-white/5 p-6 transition-colors duration-300">
                   {/* Title with capacity badges */}
                   <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-lg sm:text-xl font-semibold text-gray-800 flex-1">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white flex-1">
                       {category.label}
                     </h3>
                     <div className="flex items-center gap-2 ml-4 flex-shrink-0">
                       {/* Passengers badge */}
-                      <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-secondary-100 text-primary-600 text-xs">
-                        <Users className="w-3 h-3 text-primary-600" />
-                        <span className="font-normal text-primary-600">{category.passengers}</span>
+                      <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-secondary-500/20 text-secondary-400 text-xs border border-secondary-500/30">
+                        <Users className="w-3 h-3 text-secondary-400" />
+                        <span className="font-normal text-secondary-400">{category.passengers}</span>
                       </div>
                       {/* Luggage badge */}
-                      <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-secondary-100 text-primary-600 text-xs">
-                        <Luggage className="w-3 h-3 text-primary-600" />
-                        <span className="font-normal text-primary-600">{category.luggage}</span>
+                      <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-secondary-500/20 text-secondary-400 text-xs border border-secondary-500/30">
+                        <Luggage className="w-3 h-3 text-secondary-400" />
+                        <span className="font-normal text-secondary-400">{category.luggage}</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Price */}
                   <div className="mb-2">
-                    <p className="text-sm font-normal text-gray-700">
+                    <p className="text-sm font-normal text-gray-300">
                       À partir de {category.price}€
                     </p>
                   </div>
 
                   {/* Description - becomes yellow on hover */}
-                  <p className="text-sm text-gray-400 leading-relaxed group-hover:bg-secondary-100 group-hover:text-primary-600 group-hover:px-3 group-hover:py-2 rounded-md transition-all duration-300 inline-block mb-4">
+                  <p className="text-sm text-gray-400 leading-relaxed group-hover:bg-secondary-500/20 group-hover:text-secondary-400 group-hover:px-3 group-hover:py-2 rounded-md transition-all duration-300 inline-block mb-4">
                     {category.description}
                   </p>
 
@@ -304,7 +304,7 @@ export function FleetSection() {
                       setSelectedVehicle(category);
                       setIsModalOpen(true);
                     }}
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-secondary-600 hover:text-secondary-700 hover:bg-secondary-50 rounded-lg transition-all duration-300 group/btn"
+                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-secondary-400 hover:text-secondary-300 hover:bg-secondary-500/20 rounded-lg transition-all duration-300 group/btn border border-secondary-500/30"
                   >
                     <span>En savoir plus</span>
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
@@ -315,7 +315,7 @@ export function FleetSection() {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">Aucun véhicule ne correspond à vos critères</p>
+            <p className="text-gray-300 text-lg">Aucun véhicule ne correspond à vos critères</p>
             <button
               onClick={() => setSelectedType('all')}
               className="mt-4 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
