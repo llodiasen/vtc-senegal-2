@@ -2,12 +2,14 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Briefcase, UserCircle, Star, Building2, Check, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const ENTERPRISE_SERVICES = [
   {
     id: 'personnel',
     icon: Briefcase,
+    image: '/cars/Transport du personnel.jpg',
     title: 'Transport du personnel',
     subtitle: 'Solutions de transport pour vos équipes',
     features: [
@@ -22,6 +24,7 @@ const ENTERPRISE_SERVICES = [
   {
     id: 'chauffeurs',
     icon: UserCircle,
+    image: '/cars/Placement de chauffeurs.jpg',
     title: 'Placement de chauffeurs',
     subtitle: 'Chauffeurs dédiés pour vos dirigeants',
     features: [
@@ -36,6 +39,7 @@ const ENTERPRISE_SERVICES = [
   {
     id: 'vip',
     icon: Star,
+    image: '/cars/Navettes VIP.jpg',
     title: 'Navettes VIP',
     subtitle: 'Service premium pour événements d\'entreprise',
     features: [
@@ -50,6 +54,7 @@ const ENTERPRISE_SERVICES = [
   {
     id: 'location',
     icon: Building2,
+    image: '/cars/Location flexible.jpg',
     title: 'Location flexible',
     subtitle: 'Solutions adaptées à vos besoins ponctuels',
     features: [
@@ -122,7 +127,6 @@ export function EnterpriseSolutionsSection() {
               }}
             >
               {ENTERPRISE_SERVICES.map((service) => {
-                const IconComponent = service.icon;
                 return (
                   <div
                     key={service.id}
@@ -132,11 +136,15 @@ export function EnterpriseSolutionsSection() {
                       minWidth: `calc((100% - ${(cardsPerView - 1) * 1.5}rem) / ${cardsPerView})`,
                     }}
                   >
-                    {/* Icon section */}
-                    <div className="relative aspect-[4/3] bg-transparent flex items-center justify-center p-8">
-                      <div className="w-16 h-16 rounded-lg bg-primary-600 flex items-center justify-center">
-                        <IconComponent className="w-8 h-8 text-white" aria-hidden />
-                      </div>
+                    {/* Image section */}
+                    <div className="relative aspect-[4/3] bg-transparent flex items-center justify-center overflow-hidden">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
                     </div>
 
                     {/* Content - White section with hover effect */}

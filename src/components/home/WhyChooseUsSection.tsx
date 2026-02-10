@@ -32,7 +32,7 @@ const WhyChooseUsSection = () => {
         <div
           className="relative flex items-center justify-center min-h-[400px] lg:min-h-[480px] lg:rounded-br-[20%] overflow-hidden bg-gray-400"
           style={{
-            backgroundImage: "url('/securite-vehicule.png')",
+            backgroundImage: "url('/cars/nos avantages.jpg')",
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',

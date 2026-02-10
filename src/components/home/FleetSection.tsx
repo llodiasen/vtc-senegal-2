@@ -205,7 +205,7 @@ export function FleetSection() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
             Véhicules{' '}
             <span className="text-primary-600">disponibles</span>
           </h2>

@@ -13,5 +13,7 @@ export { SolutionsSection } from './SolutionsSection';
 export { AboutSection } from './AboutSection';
 export { ToursSection } from './ToursSection';
 export { EnterpriseSolutionsSection } from './EnterpriseSolutionsSection';
+export { UnifiedSolutionsSection } from './UnifiedSolutionsSection';
 export { WhyChooseUsSection } from './WhyChooseUsSection';
 export { ContactSection } from './ContactSection';
+export { FAQSection } from './FAQSection';

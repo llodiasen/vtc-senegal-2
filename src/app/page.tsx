@@ -1,6 +1,6 @@
 import React from 'react';
 import HomeHeader from '@/components/layout/HomeHeader';
-import { BookingSection, FleetSection, ValuePropositionSection, FeatureCardsSection, SolutionsSection, EnterpriseSolutionsSection, WhyChooseUsSection, ContactSection } from '@/components/home';
+import { BookingSection, FleetSection, ValuePropositionSection, FeatureCardsSection, UnifiedSolutionsSection, WhyChooseUsSection, FAQSection } from '@/components/home';
 
 export default function HomePage() {
   return (
@@ -41,17 +41,14 @@ export default function HomePage() {
       {/* Section Proposition de valeur */}
       <ValuePropositionSection />
 
-      {/* Section Solutions adaptées à tous vos besoins */}
-      <SolutionsSection />
-
-      {/* Solutions transport pour entreprises */}
-      <EnterpriseSolutionsSection />
+      {/* Section Solutions unifiée avec filtre Particulier/Entreprise */}
+      <UnifiedSolutionsSection />
 
       {/* Pourquoi nous choisir ? */}
       <WhyChooseUsSection />
 
-      {/* Section Contactez-nous */}
-      <ContactSection />
+      {/* Section FAQ */}
+      <FAQSection />
     </div>
     </>
   );
