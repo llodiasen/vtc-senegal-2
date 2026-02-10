@@ -205,6 +205,8 @@ export function UnifiedSolutionsSection() {
   const [cardsPerView, setCardsPerView] = useState(3);
   
   React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const updateCardsPerView = () => {
       if (window.innerWidth < 640) {
         setCardsPerView(1); // Mobile: 1 card

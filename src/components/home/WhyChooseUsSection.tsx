@@ -16,8 +16,9 @@ const WhyChooseUsSection = () => {
             Les avantages de faire confiance à scod vtc
           </h2>
           <p className="text-white text-sm sm:text-base leading-relaxed mb-6 max-w-xl text-justify">
-            Les avantages de faire confiance à scod vtc pour vos besoins de
-            transport d&apos;entreprise. Service garanti 365 jours par an, respect strict des horaires convenus, véhicules entretenus et chauffeurs formés.
+            Réservez votre VTC en toute sérénité : chauffeur confirmé à l&apos;avance, suivi en temps réel, prise en charge garantie à l&apos;heure. En cas de retard de vol à l&apos;aéroport AIBD, nous nous adaptons sans frais. Nos tarifs fixes s&apos;affichent en FCFA dès la réservation, sans surfacturation liée aux embouteillages de Dakar. Le prix reste garanti, même plusieurs semaines à l&apos;avance.
+            <br /><br />
+            Nos chauffeurs expérimentés et nos véhicules premium climatisés vous garantissent un confort irréprochable à Dakar, Thiès et Saly. Pour vos déplacements professionnels ou familiaux, vous méritez le meilleur service.
           </p>
           <Link
             href="/booking/new"
