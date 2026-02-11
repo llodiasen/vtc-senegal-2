@@ -40,7 +40,7 @@ const FLEET_CATEGORIES: Vehicle[] = [
     id: 1,
     label: 'BMW Série 5',
     type: 'berline',
-    image: '/cars/1.webp',
+    image: '/cars/1.png',
     price: 25,
     passengers: 4,
     luggage: 3,
@@ -63,7 +63,7 @@ const FLEET_CATEGORIES: Vehicle[] = [
     id: 2,
     label: 'Tesla Model S',
     type: 'berline',
-    image: '/cars/7ac99ba95b.jpg',
+    image: '/cars/2.png',
     price: 15,
     passengers: 4,
     luggage: 3,
@@ -86,7 +86,7 @@ const FLEET_CATEGORIES: Vehicle[] = [
     id: 3,
     label: 'Tesla Model X',
     type: 'suv',
-    image: '/cars/cef2b6af2c.jpg',
+    image: '/cars/3.png',
     price: 20,
     passengers: 7,
     luggage: 4,
@@ -109,7 +109,7 @@ const FLEET_CATEGORIES: Vehicle[] = [
     id: 4,
     label: 'Range Rover',
     type: '4x4',
-    image: '/cars/93d4fcebfa.jpg',
+    image: '/cars/4.png',
     price: 35,
     passengers: 5,
     luggage: 4,
@@ -132,7 +132,7 @@ const FLEET_CATEGORIES: Vehicle[] = [
     id: 5,
     label: 'Mercedes V-Class',
     type: 'van',
-    image: '/cars/62e070ed9a.jpg',
+    image: '/cars/5.png',
     price: 40,
     passengers: 8,
     luggage: 6,
@@ -155,7 +155,7 @@ const FLEET_CATEGORIES: Vehicle[] = [
     id: 6,
     label: 'Van Access',
     type: 'van',
-    image: '/cars/a4b3ecb258.jpg',
+    image: '/cars/6.png',
     price: 40,
     passengers: 6,
     luggage: 4,
@@ -215,8 +215,8 @@ export function FleetSection() {
         </div>
 
         {/* Filtres - Design en pilules avec compteurs */}
-        <div className="mb-10">
-          <div className="flex flex-wrap justify-center gap-3">
+        <div className="mb-8 sm:mb-10">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             {[
               { value: 'all', label: 'Tous' },
               { value: 'berline', label: 'Berlines' },
@@ -230,10 +230,10 @@ export function FleetSection() {
                   key={type.value}
                   onClick={() => setSelectedType(type.value as VehicleType)}
                   className={`
-                    inline-flex items-center px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300
+                    inline-flex items-center px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300
                     ${isActive
                       ? 'bg-primary-600 text-white shadow-md hover:bg-primary-700'
-                      : 'bg-white/10 text-white border border-white/20 hover:bg-white/20 hover:border-white/30 backdrop-blur-sm'
+                      : 'bg-white/10 text-white border border-white/20 hover:bg-secondary-500/30 hover:border-secondary-500/50 backdrop-blur-sm'
                     }
                   `}
                 >
@@ -246,14 +246,14 @@ export function FleetSection() {
 
         {/* Fleet Grid */}
         {filteredVehicles.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {filteredVehicles.map((category) => (
               <div
                 key={category.id}
                 className="group bg-[#1e2a3a] rounded-xl overflow-hidden hover:shadow-lg hover:bg-[#253141] transition-all duration-300 border border-white/10"
               >
                 {/* Image with dark background */}
-                <div className="relative aspect-[4/3] bg-[#192230] flex items-center justify-center p-8">
+                <div className="relative aspect-[4/3] bg-[#192230] flex items-center justify-center p-4 sm:p-6">
                   <div className="relative w-full h-full">
                     <Image
                       src={category.image}
@@ -266,21 +266,21 @@ export function FleetSection() {
                 </div>
 
                 {/* Content - Dark section with hover effect */}
-                <div className="bg-transparent group-hover:bg-white/5 p-6 transition-colors duration-300">
+                <div className="bg-transparent group-hover:bg-white/5 p-4 sm:p-6 transition-colors duration-300">
                   {/* Title with capacity badges */}
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-lg sm:text-xl font-semibold text-white flex-1">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-0 mb-3">
+                    <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white flex-1">
                       {category.label}
                     </h3>
-                    <div className="flex items-center gap-2 ml-4 flex-shrink-0">
+                    <div className="flex items-center gap-2 flex-shrink-0">
                       {/* Passengers badge */}
                       <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-secondary-500/20 text-secondary-400 text-xs border border-secondary-500/30">
-                        <Users className="w-3 h-3 text-secondary-400" />
+                        <Users className="w-3 h-3 text-white" />
                         <span className="font-normal text-secondary-400">{category.passengers}</span>
                       </div>
                       {/* Luggage badge */}
                       <div className="flex items-center gap-1 px-2 py-1 rounded-lg bg-secondary-500/20 text-secondary-400 text-xs border border-secondary-500/30">
-                        <Luggage className="w-3 h-3 text-secondary-400" />
+                        <Luggage className="w-3 h-3 text-white" />
                         <span className="font-normal text-secondary-400">{category.luggage}</span>
                       </div>
                     </div>
@@ -293,8 +293,8 @@ export function FleetSection() {
                     </p>
                   </div>
 
-                  {/* Description - becomes yellow on hover */}
-                  <p className="text-sm text-gray-400 leading-relaxed group-hover:bg-secondary-500/20 group-hover:text-secondary-400 group-hover:px-3 group-hover:py-2 rounded-md transition-all duration-300 inline-block mb-4">
+                  {/* Description - highlight on hover, texte en blanc */}
+                  <p className="text-sm text-white leading-relaxed group-hover:bg-secondary-500/20 group-hover:text-white group-hover:px-3 group-hover:py-2 rounded-md transition-all duration-300 inline-block mb-4">
                     {category.description}
                   </p>
 
@@ -304,7 +304,7 @@ export function FleetSection() {
                       setSelectedVehicle(category);
                       setIsModalOpen(true);
                     }}
-                    className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-secondary-400 hover:text-secondary-300 hover:bg-secondary-500/20 rounded-lg transition-all duration-300 group/btn border border-secondary-500/30"
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-medium text-white hover:text-white hover:bg-secondary-500/20 rounded-lg transition-all duration-300 group/btn border border-secondary-500/30"
                   >
                     <span>En savoir plus</span>
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />

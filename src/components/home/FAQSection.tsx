@@ -10,12 +10,12 @@ interface FAQItem {
 
 const FAQ_DATA: FAQItem[] = [
   {
-    question: 'Comment réserver un trajet avec VTC SENEGAL ?',
+    question: 'Comment réserver un trajet avec SCOD VTC ?',
     answer: (
       <div className="space-y-2">
-        <p className="text-sm">Voici les étapes à suivre pour réserver un trajet depuis le site ou l&apos;app VTC SENEGAL :</p>
+        <p className="text-sm">Voici les étapes à suivre pour réserver un trajet depuis le site ou l&apos;app SCOD VTC :</p>
         <ol className="list-decimal list-inside space-y-1.5 ml-3 text-sm">
-          <li>Connectez-vous à votre compte « VTC SENEGAL »</li>
+          <li>Connectez-vous à votre compte « SCOD VTC »</li>
           <li>Choisissez le mode de réservation : « Partir maintenant » ou « Partir plus tard », puis définissez la date et l&apos;heure.</li>
           <li>Renseignez les informations : adresse de départ/destination et si besoin, « Ajouter un arrêt ».</li>
           <li>Cliquez sur « Je consulte les prix ».</li>
@@ -32,12 +32,12 @@ const FAQ_DATA: FAQItem[] = [
     question: 'Comment connaître le prix de ma course ?',
     answer: (
       <div className="space-y-2">
-        <p className="text-sm">Que vous souhaitiez vérifier la disponibilité d&apos;un chauffeur, faire une simulation de tarif ou obtenir un devis sans réserver, VTC SENEGAL vous affiche toujours le prix fixe de votre course dès que les informations de trajet sont saisies.</p>
+        <p className="text-sm">Que vous souhaitiez vérifier la disponibilité d&apos;un chauffeur, faire une simulation de tarif ou obtenir un devis sans réserver, SCOD VTC vous affiche toujours le prix fixe de votre course dès que les informations de trajet sont saisies.</p>
         
         <div className="space-y-2">
-          <h4 className="font-semibold text-gray-900 text-sm">Depuis l&apos;application mobile VTC SENEGAL (iOS et Android)</h4>
+          <h4 className="font-semibold text-gray-900 text-sm">Depuis l&apos;application mobile SCOD VTC (iOS et Android)</h4>
           <ol className="list-decimal list-inside space-y-1.5 ml-3 text-sm">
-            <li>Ouvrez l&apos;application VTC SENEGAL.</li>
+            <li>Ouvrez l&apos;application SCOD VTC.</li>
             <li>Renseignez votre adresse de départ et d&apos;arrivée.</li>
             <li>Choisissez la date et l&apos;heure du trajet (immédiat ou réservé).</li>
             <li>Le prix s&apos;affiche automatiquement selon la gamme de véhicule sélectionnée.</li>
@@ -65,9 +65,9 @@ const FAQ_DATA: FAQItem[] = [
     question: 'Comment choisir ma gamme de véhicule ?',
     answer: (
       <div className="space-y-2">
-        <p className="text-sm">VTC SENEGAL propose plusieurs gammes de véhicules pour s&apos;adapter à tous vos besoins, que ce soit pour un trajet quotidien, un déplacement professionnel ou un transport spécifique.</p>
+        <p className="text-sm">SCOD VTC propose plusieurs gammes de véhicules pour s&apos;adapter à tous vos besoins, que ce soit pour un trajet quotidien, un déplacement professionnel ou un transport spécifique.</p>
         <ol className="list-decimal list-inside space-y-1.5 ml-3 text-sm">
-          <li>Rendez-vous sur notre site ou sur l&apos;app VTC SENEGAL</li>
+          <li>Rendez-vous sur notre site ou sur l&apos;app SCOD VTC</li>
           <li>Indiquez votre adresse de départ, d&apos;arrivée, date et heure.</li>
           <li>Cliquez sur « Je consulte les prix ».</li>
           <li>Comparez les différentes gammes proposées, et choisissez celle adaptée à vos besoins.</li>
@@ -97,7 +97,7 @@ const FAQ_DATA: FAQItem[] = [
         <div className="space-y-2">
           <h4 className="font-semibold text-gray-900 text-sm">Où consulter mon point de prise en charge ?</h4>
           <ul className="list-disc list-inside space-y-1.5 ml-3 text-sm">
-            <li><strong>Depuis l&apos;app mobile :</strong> ouvrez l&apos;application VTC SENEGAL, allez dans « Réservations », sélectionnez la course concernée, puis cliquez sur « Détails ».</li>
+            <li><strong>Depuis l&apos;app mobile :</strong> ouvrez l&apos;application SCOD VTC, allez dans « Réservations », sélectionnez la course concernée, puis cliquez sur « Détails ».</li>
             <li><strong>Depuis le site web :</strong> connectez-vous à votre compte, cliquez sur l&apos;onglet « Réservations », puis sélectionnez la course concernée.</li>
           </ul>
         </div>
@@ -108,7 +108,7 @@ const FAQ_DATA: FAQItem[] = [
     question: 'Conditions d\'attente et retard aux aéroports',
     answer: (
       <div className="space-y-2">
-        <p className="text-sm">Que se passe-t-il si votre vol ou votre train est en retard ? VTC SENEGAL peut ajuster automatiquement l&apos;horaire de votre prise en charge, à condition d&apos;avoir renseigné votre numéro de vol ou de train lors de la réservation.</p>
+        <p className="text-sm">Que se passe-t-il si votre vol ou votre train est en retard ? SCOD VTC peut ajuster automatiquement l&apos;horaire de votre prise en charge, à condition d&apos;avoir renseigné votre numéro de vol ou de train lors de la réservation.</p>
         
         <div className="space-y-2">
           <div>
@@ -152,7 +152,7 @@ const FAQ_DATA: FAQItem[] = [
               </div>
 
               <div>
-                <p className="font-medium text-gray-900 mb-1.5 text-sm">Depuis l&apos;application mobile VTC SENEGAL</p>
+                <p className="font-medium text-gray-900 mb-1.5 text-sm">Depuis l&apos;application mobile SCOD VTC</p>
                 <ol className="list-decimal list-inside space-y-1.5 ml-3 text-gray-700 text-sm">
                   <li>Dans le champ « Où vient-on vous récupérer », sélectionnez « Gare » ou « Aéroport ».</li>
                   <li>Choisissez le lieu de prise en charge.</li>
@@ -168,8 +168,8 @@ const FAQ_DATA: FAQItem[] = [
         <div className="bg-primary-50 border-l-2 border-primary-600 p-2.5 mt-2">
           <p className="text-sm text-gray-700">
             <strong>Pour toute question,</strong> contactez notre Service Client :{' '}
-            <a href="mailto:contact@vtcsenegal.com" className="text-primary-600 hover:underline font-medium">
-              contact@vtcsenegal.com
+            <a href="mailto:contact@scodvtc.com" className="text-primary-600 hover:underline font-medium">
+              contact@scodvtc.com
             </a>
           </p>
         </div>
@@ -207,15 +207,15 @@ export function FAQSection() {
             >
               <button
                 onClick={() => toggleQuestion(index)}
-                className="w-full flex items-center justify-between p-4 text-left focus:outline-none focus:ring-1 focus:ring-primary-500 focus:ring-inset"
+                className="w-full flex items-center justify-between p-3 sm:p-4 text-left focus:outline-none focus:ring-1 focus:ring-primary-500 focus:ring-inset"
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-answer-${index}`}
               >
-                <h3 className="text-sm sm:text-base font-medium text-gray-900 pr-4">
+                <h3 className="text-xs sm:text-sm lg:text-base font-medium text-gray-900 pr-3 sm:pr-4">
                   {faq.question}
                 </h3>
                 <ChevronDown
-                  className={`w-4 h-4 text-gray-500 flex-shrink-0 transition-transform duration-300 ${
+                  className={`w-4 h-4 sm:w-5 sm:h-5 text-gray-500 flex-shrink-0 transition-transform duration-300 ${
                     openIndex === index ? 'transform rotate-180' : ''
                   }`}
                   aria-hidden
@@ -227,7 +227,7 @@ export function FAQSection() {
                   openIndex === index ? 'max-h-[5000px] opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
-                <div className="px-4 pb-4 text-sm text-gray-700 leading-relaxed">
+                <div className="px-3 sm:px-4 pb-3 sm:pb-4 text-xs sm:text-sm text-gray-700 leading-relaxed">
                   {faq.answer}
                 </div>
               </div>
