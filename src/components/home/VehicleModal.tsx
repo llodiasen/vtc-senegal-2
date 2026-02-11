@@ -1,9 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { X, Users, Luggage, Star, Check, Globe, Award, ChevronDown, Info, Clock, CreditCard, MapPin, AlertCircle, Fuel, Car, DollarSign } from 'lucide-react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { X, Users, Luggage, Star, Check, Globe, Award, ChevronDown, Info, Clock, CreditCard, MapPin, AlertCircle, Fuel, Car, DollarSign, Target } from 'lucide-react';
+import { AddressInput } from '@/components/booking';
+import { Button } from '@/components/ui';
+import { useBookingStore } from '@/lib/store';
+import { useAuthStore } from '@/lib/store';
+import { DatePicker } from './DatePicker';
+import { TimePicker } from './TimePicker';
 
 interface Driver {
   name: string;
@@ -39,7 +45,45 @@ interface VehicleModalProps {
 }
 
 export function VehicleModal({ vehicle, isOpen, onClose }: VehicleModalProps) {
+  const router = useRouter();
+  const { user } = useAuthStore();
+  const { pickup, dropoff, setPickup, setDropoff } = useBookingStore();
+  
   const [showRules, setShowRules] = useState(false);
+  const [showBookingPopup, setShowBookingPopup] = useState(false);
+  const [pickupAddress, setPickupAddress] = useState(pickup?.address || '');
+  const [dropoffAddress, setDropoffAddress] = useState(dropoff?.address || '');
+  
+  const [isMounted, setIsMounted] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date>(() => new Date('2024-01-01'));
+  const [selectedTime, setSelectedTime] = useState<string>('00:00');
+
+  useEffect(() => {
+    setIsMounted(true);
+    const now = new Date();
+    setSelectedDate(now);
+    setSelectedTime(
+      `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
+    );
+  }, []);
+
+  const handleBookingSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!pickupAddress || !dropoffAddress) {
+      alert('Veuillez renseigner les adresses de départ et d\'arrivée');
+      return;
+    }
+
+    if (!user) {
+      router.push('/auth/login?redirect=/booking/new');
+      return;
+    }
+
+    router.push('/booking/new');
+    setShowBookingPopup(false);
+    onClose();
+  };
   
   if (!isOpen || !vehicle) return null;
 
@@ -255,15 +299,106 @@ export function VehicleModal({ vehicle, isOpen, onClose }: VehicleModalProps) {
 
           {/* Bouton d'action - sticky */}
           <div className="px-6 py-4 border-t border-gray-100 bg-white rounded-b-2xl flex-shrink-0">
-            <Link
-              href="/booking/new"
+            <button
+              onClick={() => setShowBookingPopup(true)}
               className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
             >
               Réserver maintenant
-            </Link>
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Popup de réservation */}
+      {showBookingPopup && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[120] flex items-center justify-center p-4"
+            onClick={() => setShowBookingPopup(false)}
+          >
+            <div
+              className="bg-white rounded-2xl max-w-lg w-full shadow-2xl p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-xl font-bold text-gray-900">Réserver un trajet</h3>
+                <button
+                  onClick={() => setShowBookingPopup(false)}
+                  className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors"
+                  aria-label="Fermer"
+                >
+                  <X className="w-5 h-5 text-gray-700" />
+                </button>
+              </div>
+
+              {/* Formulaire de réservation */}
+              <form onSubmit={handleBookingSubmit} className="space-y-4">
+                {/* Adresse de départ */}
+                <div className="relative">
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 z-10 pointer-events-none">
+                    <Target className="w-4 h-4" />
+                  </div>
+                  <AddressInput
+                    label=""
+                    value={pickupAddress}
+                    onChange={(address, location) => {
+                      setPickupAddress(address);
+                      if (location) {
+                        setPickup(location);
+                      }
+                    }}
+                    placeholder="Adresse de départ"
+                    className="pl-10 pr-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-gray-900 placeholder:text-gray-400"
+                  />
+                </div>
+
+                {/* Adresse d'arrivée */}
+                <div className="relative">
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 z-10 pointer-events-none">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <AddressInput
+                    label=""
+                    value={dropoffAddress}
+                    onChange={(address, location) => {
+                      setDropoffAddress(address);
+                      if (location) {
+                        setDropoff(location);
+                      }
+                    }}
+                    placeholder="Adresse d'arrivée"
+                    className="pl-10 pr-3 py-2.5 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-gray-900 placeholder:text-gray-400"
+                  />
+                </div>
+
+                {/* Date et heure */}
+                <div className="grid grid-cols-2 gap-3">
+                  <DatePicker
+                    value={selectedDate}
+                    onChange={setSelectedDate}
+                    minDate={isMounted ? new Date() : new Date('2024-01-01')}
+                  />
+                  <TimePicker
+                    value={selectedTime}
+                    onChange={setSelectedTime}
+                  />
+                </div>
+
+                {/* Bouton de soumission */}
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold py-2.5 text-base rounded-lg transition-colors shadow-md hover:shadow-lg"
+                >
+                  Consulter les prix
+                </Button>
+              </form>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 }
