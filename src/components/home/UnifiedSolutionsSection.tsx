@@ -243,15 +243,15 @@ export function UnifiedSolutionsSection() {
   }, [filter]);
 
   return (
-    <section id="services" className="bg-[#192230] py-16 sm:py-20 px-4 sm:px-6 lg:px-8 scroll-mt-20">
+    <section id="services" className="bg-white py-16 sm:py-20 px-4 sm:px-6 lg:px-8 scroll-mt-20">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
             Solutions adaptées à tous vos{' '}
-            <span className="text-primary-400">besoins</span>
+            <span className="text-primary-600">besoins</span>
           </h2>
-          <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-8">
+          <p className="text-gray-500 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-8">
             De l&apos;aéroport aux événements spéciaux, en passant par vos
             déplacements quotidiens, nous avons la solution de transport qui vous
             convient.
@@ -264,7 +264,7 @@ export function UnifiedSolutionsSection() {
               className={`px-4 py-1.5 rounded-md font-medium text-sm transition-all duration-300 ${
                 filter === 'particulier'
                   ? 'bg-primary-600 text-white'
-                  : 'bg-white/10 text-white border border-white/20 hover:bg-secondary-500/30 hover:border-secondary-500/50 backdrop-blur-sm'
+                  : 'bg-gray-100 text-gray-700 border border-gray-200 hover:bg-gray-200'
               }`}
             >
               Particulier
@@ -274,7 +274,7 @@ export function UnifiedSolutionsSection() {
               className={`px-4 py-1.5 rounded-md font-medium text-sm transition-all duration-300 ${
                 filter === 'entreprise'
                   ? 'bg-primary-600 text-white'
-                  : 'bg-white/10 text-white border border-white/20 hover:bg-secondary-500/30 hover:border-secondary-500/50 backdrop-blur-sm'
+                  : 'bg-gray-100 text-gray-700 border border-gray-200 hover:bg-gray-200'
               }`}
             >
               Entreprise
@@ -289,17 +289,17 @@ export function UnifiedSolutionsSection() {
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-0 sm:-translate-x-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-secondary-500/30 transition-colors"
+                className="absolute left-0 sm:-translate-x-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
                 aria-label="Précédent"
               >
-                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
               </button>
               <button
                 onClick={nextSlide}
-                className="absolute right-0 sm:translate-x-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center hover:bg-secondary-500/30 transition-colors"
+                className="absolute right-0 sm:translate-x-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white shadow-md border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors"
                 aria-label="Suivant"
               >
-                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
               </button>
             </>
           )}
@@ -316,7 +316,7 @@ export function UnifiedSolutionsSection() {
                 return (
                   <div
                     key={service.id}
-                    className="group relative bg-[#1e2a3a] rounded-xl overflow-hidden hover:shadow-lg hover:bg-[#253141] transition-all duration-300 flex-shrink-0 border border-white/10"
+                    className="group relative bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex-shrink-0 border border-gray-200"
                     style={{
                       width: `calc((100% - ${(cardsPerView - 1) * 1.5}rem) / ${cardsPerView})`,
                       minWidth: `calc((100% - ${(cardsPerView - 1) * 1.5}rem) / ${cardsPerView})`,
@@ -330,7 +330,7 @@ export function UnifiedSolutionsSection() {
                     )}
 
                     {/* Image section */}
-                    <div className="relative aspect-[4/3] bg-[#192230] flex items-center justify-center overflow-hidden">
+                    <div className="relative aspect-[4/3] bg-gray-100 flex items-center justify-center overflow-hidden">
                       <Image
                         src={service.image}
                         alt={service.title}
@@ -340,24 +340,24 @@ export function UnifiedSolutionsSection() {
                       />
                     </div>
 
-                    {/* Content - Dark section with hover effect */}
-                    <div className="bg-transparent group-hover:bg-white/5 p-4 sm:p-6 transition-colors duration-300">
+                    {/* Content */}
+                    <div className="bg-transparent p-4 sm:p-6 transition-colors duration-300">
                       {/* Title */}
                       <div className="mb-3">
-                        <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white">
+                        <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-gray-900">
                           {service.title}
                         </h3>
                       </div>
 
-                      {/* Description - becomes yellow on hover */}
-                      <p className="text-sm text-gray-400 leading-relaxed group-hover:bg-secondary-500/20 group-hover:text-white group-hover:px-3 group-hover:py-2 rounded-md transition-all duration-300 inline-block mb-3">
+                      {/* Description */}
+                      <p className="text-sm text-gray-600 leading-relaxed mb-3">
                         {service.description}
                       </p>
 
                       {/* Chip */}
                       <div className="mb-3">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-600/20 text-white text-xs font-medium border border-primary-600/30">
-                          <Clock className="w-3.5 h-3.5 text-primary-400" />
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-50 text-primary-700 text-xs font-medium border border-primary-200">
+                          <Clock className="w-3.5 h-3.5 text-primary-600" />
                           {service.chip}
                         </span>
                       </div>
@@ -367,22 +367,22 @@ export function UnifiedSolutionsSection() {
                         {service.features.map((feature) => (
                           <li
                             key={feature}
-                            className="flex items-center gap-2 text-sm text-gray-300"
+                            className="flex items-center gap-2 text-sm text-gray-700"
                           >
-                            <Check className="w-4 h-4 text-primary-400 flex-shrink-0" />
+                            <Check className="w-4 h-4 text-primary-600 flex-shrink-0" />
                             {feature}
                           </li>
                         ))}
                       </ul>
 
                       {/* Price */}
-                      <div className={`mb-4 ${filter === 'entreprise' ? 'pt-4 border-t border-white/10' : ''}`}>
-                        <p className="text-sm font-normal text-gray-300 mb-2">
+                      <div className={`mb-4 ${filter === 'entreprise' ? 'pt-4 border-t border-gray-200' : ''}`}>
+                        <p className="text-sm font-normal text-gray-700 mb-2">
                           {service.price}
                         </p>
                         <Link
                           href={service.ctaLink}
-                          className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-medium text-white hover:text-white hover:bg-secondary-500/20 rounded-lg transition-all duration-300 group/btn border border-white/20"
+                          className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 text-xs sm:text-sm font-medium text-secondary-600 hover:text-secondary-700 hover:bg-secondary-50 rounded-lg transition-all duration-300 group/btn border border-secondary-200"
                         >
                           <span>{service.cta}</span>
                           <span className="group-hover/btn:translate-x-1 transition-transform duration-300" aria-hidden>→</span>

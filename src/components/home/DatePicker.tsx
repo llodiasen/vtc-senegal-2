@@ -42,21 +42,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
     const daysInMonth = lastDay.getDate();
-    const startingDayOfWeek = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1; // Lundi = 0
 
     const days = [];
-    // Jours du mois précédent
-    const prevMonth = new Date(year, month - 1, 0);
-    for (let i = startingDayOfWeek - 1; i >= 0; i--) {
-      days.push({
-        date: prevMonth.getDate() - i,
-        isCurrentMonth: false,
-        isToday: false,
-        isSelected: false,
-      });
-    }
-    // Jours du mois actuel (today cohérent serveur/client via state + useEffect)
-    for (let i = 1; i <= daysInMonth; i++) {
+    // Jours du mois actuel - limité à 30 jours maximum
+    const maxDays = Math.min(daysInMonth, 30);
+    for (let i = 1; i <= maxDays; i++) {
       const dayDate = new Date(year, month, i);
       days.push({
         date: i,
@@ -64,16 +54,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         isToday: dayDate.toDateString() === today.toDateString(),
         isSelected: dayDate.toDateString() === value.toDateString(),
         fullDate: dayDate,
-      });
-    }
-    // Jours du mois suivant pour compléter la grille
-    const remainingDays = 42 - days.length;
-    for (let i = 1; i <= remainingDays; i++) {
-      days.push({
-        date: i,
-        isCurrentMonth: false,
-        isToday: false,
-        isSelected: false,
       });
     }
     return days;
@@ -147,34 +127,34 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute bottom-full left-0 mb-2 z-50 bg-white rounded-lg shadow-lg border border-gray-200 p-4 min-w-[320px]">
+          <div className="absolute bottom-full left-0 mb-2 z-50 bg-white rounded-lg shadow-lg border border-gray-200 p-3 min-w-[320px]">
             {/* Header */}
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <button
                 type="button"
                 onClick={() => navigateMonth('prev')}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
               >
-                <ChevronLeft className="w-5 h-5 text-gray-600" />
+                <ChevronLeft className="w-4 h-4 text-gray-600" />
               </button>
-              <h3 className="text-base font-semibold text-gray-900">
+              <h3 className="text-sm font-semibold text-gray-900">
                 {months[currentMonth.getMonth()]} {currentMonth.getFullYear()}
               </h3>
               <button
                 type="button"
                 onClick={() => navigateMonth('next')}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
               >
-                <ChevronRight className="w-5 h-5 text-gray-600" />
+                <ChevronRight className="w-4 h-4 text-gray-600" />
               </button>
             </div>
 
             {/* Days of week */}
-            <div className="grid grid-cols-7 gap-1 mb-2">
+            <div className="hidden md:grid grid-cols-7 gap-1 mb-1.5">
               {daysOfWeek.map((day) => (
                 <div
                   key={day}
-                  className="text-center text-xs font-medium text-gray-500 py-2"
+                  className="text-center text-xs font-medium text-gray-500 py-1"
                 >
                   {day}
                 </div>
@@ -182,7 +162,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             </div>
 
             {/* Calendar grid */}
-            <div className="grid grid-cols-7 gap-1 mb-4">
+            <div className="grid grid-cols-2 md:grid-cols-7 gap-1 mb-3">
               {days.map((day, index) => (
                 <button
                   key={index}
@@ -190,7 +170,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                   onClick={() => handleDateSelect(day)}
                     disabled={!day.isCurrentMonth || (day.fullDate && day.fullDate < effectiveMinDate)}
                   className={cn(
-                    'aspect-square flex items-center justify-center text-sm rounded-lg transition-colors',
+                    'aspect-square flex items-center justify-center text-xs md:text-sm rounded-lg transition-colors',
                     day.isSelected
                       ? 'bg-gray-900 text-white font-semibold'
                       : day.isCurrentMonth
@@ -209,10 +189,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             <button
               type="button"
               onClick={handleTodayClick}
-              className="w-full flex items-center gap-3 px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left"
+              className="w-full flex items-center gap-2 px-3 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-left"
             >
-              <Calendar className="w-5 h-5 text-gray-400" />
-              <span className="text-gray-900">Aujourd&apos;hui</span>
+              <Calendar className="w-4 h-4 text-gray-400" />
+              <span className="text-sm text-gray-900">Aujourd&apos;hui</span>
             </button>
           </div>
         </>

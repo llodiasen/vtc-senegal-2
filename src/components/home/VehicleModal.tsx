@@ -80,35 +80,35 @@ export function VehicleModal({ vehicle, isOpen, onClose }: VehicleModalProps) {
                     <DollarSign className="w-4 h-4 text-gray-400" />
                     <span className="text-sm text-gray-600 font-medium">{vehicle.price}€</span>
                   </div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">Prix</p>
+                  <p className="hidden md:block text-xs text-gray-500 uppercase tracking-wide">Prix</p>
                 </div>
                 <div className="flex flex-col items-center gap-1">
                   <div className="flex items-center gap-2">
                     <Users className="w-4 h-4 text-gray-400" />
                     <span className="text-sm text-gray-600 font-medium">{vehicle.passengers}</span>
                   </div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">Passagers</p>
+                  <p className="hidden md:block text-xs text-gray-500 uppercase tracking-wide">Passagers</p>
                 </div>
                 <div className="flex flex-col items-center gap-1">
                   <div className="flex items-center gap-2">
                     <Luggage className="w-4 h-4 text-gray-400" />
                     <span className="text-sm text-gray-600 font-medium">{vehicle.luggage}</span>
                   </div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">Bagages</p>
+                  <p className="hidden md:block text-xs text-gray-500 uppercase tracking-wide">Bagages</p>
                 </div>
                 <div className="flex flex-col items-center gap-1">
                   <div className="flex items-center gap-2">
                     <Fuel className="w-4 h-4 text-gray-400" />
                     <span className="text-sm text-gray-600 font-medium">{vehicle.fuelType}</span>
                   </div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">Carburant</p>
+                  <p className="hidden md:block text-xs text-gray-500 uppercase tracking-wide">Carburant</p>
                 </div>
                 <div className="flex flex-col items-center gap-1">
                   <div className="flex items-center gap-2">
                     <Car className="w-4 h-4 text-gray-400" />
                     <span className="text-sm text-gray-600 font-medium capitalize">{vehicle.type}</span>
                   </div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wide">Type</p>
+                  <p className="hidden md:block text-xs text-gray-500 uppercase tracking-wide">Type</p>
                 </div>
               </div>
             </div>
@@ -168,7 +168,7 @@ export function VehicleModal({ vehicle, isOpen, onClose }: VehicleModalProps) {
             {/* Équipements - grille 3x4 (12 éléments) */}
             <div className="pb-4 border-b border-gray-100">
               <h3 className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wide">Équipements</h3>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                 {vehicle.features.slice(0, 12).map((feature, idx) => (
                   <div key={idx} className="flex items-center gap-2 text-sm text-gray-700">
                     <Check className="w-3.5 h-3.5 text-primary-600 flex-shrink-0" />
